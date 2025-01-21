@@ -1,6 +1,9 @@
 import { VitePWA } from 'vite-plugin-pwa';
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
+import * as path from 'path';
+
+const mainBg: string = '#64EBED';
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -19,8 +22,8 @@ export default defineConfig({
         name: 'Hearthstone-pwa',
         short_name: 'Hearthstone-pwa',
         description: 'Hearthstone the best game',
-        theme_color: '#64EBED',
-        background_color: '#64EBED',
+        theme_color: mainBg,
+        background_color: mainBg,
         display: 'standalone',
         orientation: 'landscape-primary',
         lang: 'ru',
@@ -64,4 +67,21 @@ export default defineConfig({
       },
     }),
   ],
+  css: {
+    preprocessorOptions: {
+      scss: {
+        api: 'modern-compiler',
+      },
+    },
+  },
+  resolve: {
+    alias: {
+      '@': path.resolve(__dirname, './src'),
+      '@components': path.resolve(__dirname, './src/components'),
+      '@ui': path.resolve(__dirname, './src/components/ui'),
+      '@pages': path.resolve(__dirname, './src/pages'),
+      '@types': path.resolve(__dirname, './src/types'),
+      '@utils': path.resolve(__dirname, './src/utils'),
+    },
+  },
 });
